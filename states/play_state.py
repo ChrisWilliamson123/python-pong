@@ -1,16 +1,16 @@
-# states/play_state.py
-
 import pygame
-import random
 from entities.paddle import Paddle
 from entities.ball import Ball
 from dataclasses import dataclass
+
 from states.base_state import GameState
+from states.game_over_state import GameOverState
 
 @dataclass
 class Score:
     player_one: int = 0
     player_two: int = 0
+    max: int = 2
 
 class PlayState(GameState):
     def __init__(self, game):
@@ -67,6 +67,15 @@ class PlayState(GameState):
             elif self.ball.is_under_x():
                 self.scores.player_two += 1
                 self.reset_round()
+
+            if winner := self.get_winner():
+                self.next_state = GameOverState(self.game, winner)
+
+    def get_winner(self):
+        if self.scores.player_one == self.scores.max:
+            return 'Player 1'
+        if self.scores.player_two == self.scores.max:
+            return 'Player 2'
 
     def reset_round(self):
         self.round_started = False

@@ -1,5 +1,3 @@
-# main.py
-
 import pygame
 from states.menu_state import MenuState
 

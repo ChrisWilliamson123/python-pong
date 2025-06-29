@@ -1,5 +1,3 @@
-# states/base_state.py
-
 from abc import ABC, abstractmethod
 
 class GameState(ABC):

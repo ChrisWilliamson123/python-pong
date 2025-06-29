@@ -1,5 +1,3 @@
-# transitions/fade_transition.py
-
 import pygame
 from states.base_state import GameState
 

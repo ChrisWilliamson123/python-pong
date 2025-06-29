@@ -1,5 +1,3 @@
-# states/menu_state.py
-
 import pygame
 from states.play_state import PlayState
 from states.base_state import GameState
@@ -20,7 +18,7 @@ class MenuState(GameState):
         pass  # No updates needed for a static menu
 
     def render(self):
-        self.screen.fill("darkblue")
+        self.screen.fill('black')
         text = self.font.render("Press SPACE to Play", True, (255, 255, 255))
         rect = text.get_rect(center=(self.screen.get_width() // 2, self.screen.get_height() // 2))
         self.screen.blit(text, rect)
