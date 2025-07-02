@@ -1,5 +1,5 @@
 import pygame
-from states.menu_state import MenuState
+from factories.state_factory import StateFactory
 
 class Game:
     def __init__(self):
@@ -7,7 +7,7 @@ class Game:
         self.screen = pygame.display.set_mode((800, 600))
         pygame.display.set_caption("Pong")
         self.clock = pygame.time.Clock()
-        self.state = MenuState(self)
+        self.state = StateFactory.menu_state(self)
 
     def handle_quit(self, events):
         for event in events:

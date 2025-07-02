@@ -1,18 +1,16 @@
 import pygame
-from states.play_state import PlayState
-from states.base_state import GameState
-from transitions.fade_transition import FadeTransition
+from states.state import State
+from states.state_type import StateType
 
-class MenuState(GameState):
-    def __init__(self, game):
-        super().__init__(game)
+class MenuState(State):
+    def __init__(self, game_manager):
+        super().__init__(game_manager)
         self.font = pygame.font.SysFont('Arial', 40)
 
-    def handle_events(self, events):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_SPACE]:
-            # self.next_state = PlayState(self.game)
-            self.next_state = FadeTransition(self.game, self, PlayState(self.game), 1)
+    def handle_event(self, event):
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
+            self.game_manager.change_state(StateType.GAME)
+            # self.next_state = FadeTransition(self.game, self, PlayState(self.game), 1)
 
     def update(self, dt):
         pass  # No updates needed for a static menu
