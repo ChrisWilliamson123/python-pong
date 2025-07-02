@@ -1,9 +1,12 @@
 import pygame
 
 from constants import *
+
 from states.state_type import StateType
 from states.menu_state import MenuState
 from states.game_state import GameState
+
+from game_settings import GameSettings
 
 class GameManager:
     """Manages game states and shared resources"""
@@ -12,7 +15,7 @@ class GameManager:
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
         pygame.display.set_caption(CAPTION)
         self.clock = pygame.time.Clock()
-        # TODO: Settings
+        self.settings = GameSettings()
         # TODO: Winner
 
         self.states = {

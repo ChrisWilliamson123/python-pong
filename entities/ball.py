@@ -10,21 +10,21 @@ class Ball:
         else:
             return random.randint(135, 225)
 
-    def __init__(self, x, y, radius, speed):
+    def __init__(self, x, y, radius, settings):
         self.pos = pygame.Vector2(x, y)  # precise position
         self.radius = radius
-        self.speed = speed  # pixels per second
         self.angle = Ball.takeoff_angle()
         self.rect = pygame.Rect(x, y, radius, radius)
+        self.settings = settings
 
     def move(self, dt, screen_size):
-        velocity_vector = pygame.Vector2(self.speed * math.cos(math.radians(self.angle)), self.speed * math.sin(math.radians(self.angle)))
+        ball_speed = self.settings.ball_speed * 100
+        velocity_vector = pygame.Vector2(ball_speed * math.cos(math.radians(self.angle)), ball_speed * math.sin(math.radians(self.angle)))
 
         self.pos.x += velocity_vector.x * dt
         self.pos.y += velocity_vector.y * dt
 
         # Mirror the ball's angle on edge hits to screen bounds
-        screen_width = screen_size[0]
         screen_height = screen_size[1]
         if (self.pos.y < 0) or (self.pos.y + self.radius > screen_height):
             self.angle *= -1

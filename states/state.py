@@ -5,7 +5,7 @@ class State(ABC):
     def __init__(self, game_manager):
         self.game_manager = game_manager
         self.screen = game_manager.screen
-        # self.settings = game_manager.settings
+        self.settings = game_manager.settings
         
     @abstractmethod
     def handle_event(self, event):

@@ -33,7 +33,7 @@ class GameState(State):
         self.paddle_two = Paddle(self.screen_size[0] - 20, 250, 10, 100, 400)
 
     def reset_ball(self):
-        self.ball = Ball(self.screen_size[0] / 2, self.screen_size[1] / 2, 10, 400)
+        self.ball = Ball(self.screen_size[0] / 2, self.screen_size[1] / 2, 10, self.settings)
 
     def handle_event(self, event):
         pass
