@@ -3,6 +3,7 @@ import pygame
 from constants import *
 from states.state_type import StateType
 from states.menu_state import MenuState
+from states.game_state import GameState
 
 class GameManager:
     """Manages game states and shared resources"""
@@ -15,11 +16,15 @@ class GameManager:
         # TODO: Winner
 
         self.states = {
-            StateType.MENU: MenuState(self)
+            StateType.MENU: MenuState(self),
+            StateType.GAME: GameState(self)
         }
 
         self.current_state = self.states[StateType.MENU]
         self.running = True
+
+    def change_state(self, new_state_type):
+        self.current_state = self.states[new_state_type]
 
     def run(self):
         """Main game loop"""
