@@ -10,7 +10,7 @@ class Paddle:
 
     def move(self, direction, dt, screen_height):
         # direction: -1 (up), 1 (down), 0 (no movement)
-        speed = self.settings.paddle_speed * 100
+        speed = self.settings.paddle_speed_pps
         self.pos.y += speed * direction * dt
 
         # Clamp to screen bounds

@@ -18,8 +18,7 @@ class Ball:
         self.settings = settings
 
     def move(self, dt, screen_size):
-        ball_speed = self.settings.ball_speed * 100
-        velocity_vector = pygame.Vector2(ball_speed * math.cos(math.radians(self.angle)), ball_speed * math.sin(math.radians(self.angle)))
+        velocity_vector = pygame.Vector2(self.settings.ball_speed_pps * math.cos(math.radians(self.angle)), self.settings.ball_speed_pps * math.sin(math.radians(self.angle)))
 
         self.pos.x += velocity_vector.x * dt
         self.pos.y += velocity_vector.y * dt
