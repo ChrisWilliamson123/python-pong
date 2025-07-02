@@ -1,16 +1,17 @@
 import pygame
 
 class Paddle:
-    def __init__(self, x, y, width, height, speed):
+    def __init__(self, x, y, width, height, settings):
         self.pos = pygame.Vector2(x, y)  # precise position
         self.width = width
         self.height = height
-        self.speed = speed  # pixels per second
+        self.settings = settings
         self.rect = pygame.Rect(x, y, width, height)
 
     def move(self, direction, dt, screen_height):
         # direction: -1 (up), 1 (down), 0 (no movement)
-        self.pos.y += self.speed * direction * dt
+        speed = self.settings.paddle_speed * 100
+        self.pos.y += speed * direction * dt
 
         # Clamp to screen bounds
         if self.pos.y < 0:

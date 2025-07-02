@@ -29,8 +29,8 @@ class GameState(State):
         self.font = pygame.font.SysFont('Arial', 30)
 
     def reset_paddles(self):
-        self.paddle_one = Paddle(10, 250, 10, 100, 400)
-        self.paddle_two = Paddle(self.screen_size[0] - 20, 250, 10, 100, 400)
+        self.paddle_one = Paddle(10, 250, 10, 100, self.settings)
+        self.paddle_two = Paddle(self.screen_size[0] - 20, 250, 10, 100, self.settings)
 
     def reset_ball(self):
         self.ball = Ball(self.screen_size[0] / 2, self.screen_size[1] / 2, 10, self.settings)
