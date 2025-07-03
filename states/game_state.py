@@ -8,7 +8,6 @@ from states.state_type import StateType
 class GameState(State):
     def __init__(self, game):
         super().__init__(game)
-        # self.round_started = False
         self.context = game.context
         self.score = self.context.score
 
@@ -30,9 +29,8 @@ class GameState(State):
         self.ball = Ball(self.screen_size[0] / 2, self.screen_size[1] / 2, 10, self.settings)
 
     def handle_event(self, event):
-        pass
-        # if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
-        #     self.round_started = not self.round_started
+        if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
+            self.game_manager.change_state(StateType.PAUSE)
 
     def update(self, dt):
         # Handling continuous input
@@ -65,7 +63,6 @@ class GameState(State):
             self.game_manager.change_state(StateType.GAME_OVER)
 
     def reset_round(self):
-        # self.round_started = False
         self.reset_ball()
         self.reset_paddles()
 

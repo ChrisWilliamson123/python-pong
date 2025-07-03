@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Score:
     player_one: int = 0
     player_two: int = 0
-    max: int = 2
+    max: int = 10
 
     @property
     def winner(self):

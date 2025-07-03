@@ -12,3 +12,7 @@ class StateManager:
         self.previous_state_type = self.current_state_type
         self.current_state = self.states[new_state_type]
         self.current_state_type = new_state_type
+
+    @property
+    def previous_state(self):
+        return self.states[self.previous_state_type]
