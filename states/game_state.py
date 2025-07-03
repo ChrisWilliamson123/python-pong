@@ -18,9 +18,6 @@ class GameState(State):
         self.reset_paddles()
         self.reset_ball()
 
-        # Font
-        self.font = pygame.font.SysFont('Arial', 30)
-
     def reset_paddles(self):
         self.paddle_one = Paddle(10, 250, 10, 100, self.settings)
         self.paddle_two = Paddle(self.screen_size[0] - 20, 250, 10, 100, self.settings)
@@ -77,5 +74,5 @@ class GameState(State):
         self.paddle_two.draw(self.screen)
         self.ball.draw(self.screen)
 
-        score_text = self.font.render(f'{self.score.player_one} - {self.score.player_two}', True, (255, 255, 255))
+        score_text = self.font_body.render(f'{self.score.player_one} - {self.score.player_two}', True, 'white')
         self.screen.blit(score_text, (self.screen_size[0] // 2 - score_text.get_width() // 2, 20))

@@ -7,7 +7,8 @@ class State(ABC):
         self.game_manager = game_manager
         self.screen = game_manager.screen
         self.settings = game_manager.settings
-        self.font = pygame.font.SysFont('Arial', 40)
+        self.font_title = pygame.font.Font(None, 74)
+        self.font_body = pygame.font.Font(None, 36)
         
     @abstractmethod
     def handle_event(self, event):

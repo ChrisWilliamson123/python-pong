@@ -9,7 +9,6 @@ class GameOverState(State):
         super().__init__(game)
 
         self.context = game.context
-        self.font = pygame.font.SysFont('Arial', 40)
 
     def handle_event(self, event):
         if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
@@ -21,4 +20,4 @@ class GameOverState(State):
     def render(self):
         self.screen.fill('black')
         text = f'GAME OVER\n{self.context.winner} Wins\nPress SPACE for new game'
-        TextRenderer.draw_multiline_text_centered(self.screen, text, self.font, 'white', (self.screen.get_width() // 2, self.screen.get_height() // 2))
+        TextRenderer.draw_multiline_text_centered(self.screen, text, self.font_title, 'white', (self.screen.get_width() // 2, self.screen.get_height() // 2))
