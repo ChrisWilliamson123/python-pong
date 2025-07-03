@@ -1,22 +1,16 @@
 import pygame
 from entities.paddle import Paddle
 from entities.ball import Ball
-from dataclasses import dataclass
 
 from states.state import State
-# from states.game_over_state import GameOverState
-
-@dataclass
-class Score:
-    player_one: int = 0
-    player_two: int = 0
-    max: int = 2
+from states.state_type import StateType
 
 class GameState(State):
     def __init__(self, game):
         super().__init__(game)
         # self.round_started = False
-        self.scores = Score()
+        self.context = game.context
+        self.score = self.context.score
 
         # Game dimensions
         self.screen_size = self.screen.get_size()
@@ -61,25 +55,24 @@ class GameState(State):
             self.ball.mirror_x()
 
         if self.ball.is_over_x(self.screen_size[0]):
-            self.scores.player_one += 1
+            self.score.player_one += 1
             self.reset_round()
         elif self.ball.is_under_x():
-            self.scores.player_two += 1
+            self.score.player_two += 1
             self.reset_round()
 
-        # if winner := self.get_winner():
-        #     self.next_state = GameOverState(self.game, winner)
-
-    def get_winner(self):
-        if self.scores.player_one == self.scores.max:
-            return 'Player 1'
-        if self.scores.player_two == self.scores.max:
-            return 'Player 2'
+        if self.context.winner:
+            self.game_manager.change_state(StateType.GAME_OVER)
 
     def reset_round(self):
-        self.round_started = False
+        # self.round_started = False
         self.reset_ball()
         self.reset_paddles()
+
+    def reset(self):
+        self.context.reset_score()
+        self.score = self.context.score
+        self.reset_round()
 
     def render(self):
         self.screen.fill("black")
@@ -87,5 +80,5 @@ class GameState(State):
         self.paddle_two.draw(self.screen)
         self.ball.draw(self.screen)
 
-        score_text = self.font.render(f'{self.scores.player_one} - {self.scores.player_two}', True, (255, 255, 255))
+        score_text = self.font.render(f'{self.score.player_one} - {self.score.player_two}', True, (255, 255, 255))
         self.screen.blit(score_text, (self.screen_size[0] // 2 - score_text.get_width() // 2, 20))

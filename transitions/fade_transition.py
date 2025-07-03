@@ -1,5 +1,5 @@
 import pygame
-from states.base_state import GameState
+from states.state import GameState
 
 class FadeTransition(GameState):
     def __init__(self, game, from_state, to_state, duration=1.0):
