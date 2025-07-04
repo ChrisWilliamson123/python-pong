@@ -34,7 +34,7 @@ class Ball:
 
     def is_over_x(self, screen_width):
         return self.pos.x + self.radius > screen_width
-    
+
     def is_under_x(self):
         return self.pos.x < 0
 

@@ -8,14 +8,14 @@ class ContextKey(Enum):
 class GameContext:
     def __init__(self):
         self._context = {
-            ContextKey.SCORE: Score()  
+            ContextKey.SCORE: Score()
         }
 
     # Getters and setters for underlying context properties
     @property
     def score(self):
         return self._context[ContextKey.SCORE]
-    
+
     @score.setter
     def score(self, score):
         self._context[ContextKey.SCORE] = score
@@ -27,4 +27,3 @@ class GameContext:
     @property
     def winner(self):
         return self.score.winner
-

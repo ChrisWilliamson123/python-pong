@@ -7,7 +7,7 @@ class GameSettings:
     @property
     def ball_speed_level(self):
         return self._ball_speed_level
-    
+
     @ball_speed_level.setter
     def ball_speed(self, speed):
         self._ball_speed_level = max(1, min(10, speed))  # Clamp between 1-10
@@ -19,7 +19,7 @@ class GameSettings:
     @property
     def paddle_speed_level(self):
         return self._paddle_speed_level
-    
+
     @paddle_speed_level.setter
     def paddle_speed_level(self, speed):
         self._paddle_speed_level = max(1, min(10, speed))  # Clamp between 1-10

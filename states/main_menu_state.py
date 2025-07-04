@@ -1,7 +1,5 @@
 import pygame
 
-from constants import SCREEN_WIDTH
-
 from menu_provider.menu_provider import MenuEntry, MenuEntryAction, MenuProvider, Menu
 
 from states.state import State
@@ -17,7 +15,7 @@ class MainMenuState(State):
         menu = Menu('PONG', [menu_entry])
         menu_provider = MenuProvider(menu, self.font_title, self.font_body, should_flash_selected=True)
         self.add_component(menu_provider)
-        
+
     def render(self):
         self.screen.fill('black')
 

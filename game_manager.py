@@ -57,14 +57,14 @@ class GameManager:
             self.current_state.render()
 
             pygame.display.flip()
-        
+
         pygame.quit()
 
     # State helpers
     @property
     def current_state(self):
         return self.state_manager.current_state
-    
+
     def change_state(self, new_state_type):
         self.state_manager.change_state(new_state_type)
 

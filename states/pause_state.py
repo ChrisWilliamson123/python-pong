@@ -1,7 +1,5 @@
 import pygame
 
-from constants import SCREEN_WIDTH
-
 from menu_provider.menu_provider import MenuEntry, MenuEntryAction, MenuProvider, Menu
 
 from states.state import State
@@ -23,7 +21,6 @@ class PauseState(State):
         self.screen.fill("black")
 
         super().render()
-
 
     def resume(self):
         self.game_manager.change_state(StateType.GAME)
