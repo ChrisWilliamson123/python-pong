@@ -57,9 +57,17 @@ class GameState(State):
                 self.paddle_two.move(1, dt, self.screen_size[1])
 
         if self.paddle_one.rect.colliderect(self.ball.rect):
-            self.ball.mirror_x()
+            ball_center = (self.ball.pos.y + (self.ball.radius // 2))
+            paddle_center = (self.paddle_one.pos.y + (self.paddle_one.height // 2))
+            offset = (ball_center - paddle_center) / (self.paddle_one.height / 2)
+            max_angle = 60  # degrees
+            self.ball.angle = 0 + (offset * max_angle)
         elif self.paddle_two.rect.colliderect(self.ball.rect):
-            self.ball.mirror_x()
+            ball_center = (self.ball.pos.y + (self.ball.radius // 2))
+            paddle_center = (self.paddle_two.pos.y + (self.paddle_two.height // 2))
+            offset = (ball_center - paddle_center) / (self.paddle_two.height / 2)
+            max_angle = 60  # degrees
+            self.ball.angle = 180 + (offset * max_angle)
 
         if self.ball.is_over_x(self.screen_size[0]):
             self.score.player_one += 1
