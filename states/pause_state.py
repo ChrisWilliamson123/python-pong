@@ -10,8 +10,8 @@ class PauseState(State):
         super().__init__(game_manager)
 
         menu_entries = [
-            MenuEntry(lambda: 'RESUME', [MenuEntryAction(pygame.K_RETURN, self.resume)]),
-            MenuEntry(lambda: 'MAIN MENU', [MenuEntryAction(pygame.K_RETURN, self.navigate_to_main_menu)])
+            MenuEntry(lambda: 'Resume', [MenuEntryAction(pygame.K_RETURN, self.resume)]),
+            MenuEntry(lambda: 'Main Menu', [MenuEntryAction(pygame.K_RETURN, self.navigate_to_main_menu)])
         ]
         menu = Menu('PAUSED', menu_entries)
         menu_provider = MenuProvider(menu, self.font_title, self.font_body)

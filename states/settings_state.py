@@ -11,6 +11,8 @@ class SettingsState(State):
 
         menu_entries = [
             MenuEntry(lambda: f'AI: {'ON' if self.settings.is_computer_enabled else 'OFF'}', [MenuEntryAction(pygame.K_RETURN, self.settings.toggle_computer_enabled)]),
+            MenuEntry(lambda: f'Ball Speed: {self.settings.ball_speed_level}', [MenuEntryAction(pygame.K_LEFT, self.settings.decrement_ball_speed_level), MenuEntryAction(pygame.K_RIGHT, self.settings.increment_ball_speed_level)]),
+            MenuEntry(lambda: f'Paddle Speed: {self.settings.paddle_speed_level}', [MenuEntryAction(pygame.K_LEFT, self.settings.decrement_paddle_speed_level), MenuEntryAction(pygame.K_RIGHT, self.settings.increment_paddle_speed_level)]),
         ]
         menu = Menu('SETTINGS', menu_entries)
         menu_provider = MenuProvider(menu, self.font_title, self.font_body)

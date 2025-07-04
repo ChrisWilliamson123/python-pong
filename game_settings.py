@@ -47,18 +47,27 @@ class GameSettings:
         """Create default settings file"""
         self._save_to_json()
 
+    # Ball speed
     @property
     def ball_speed_level(self):
         return self._ball_speed_level
 
     @ball_speed_level.setter
-    def ball_speed(self, speed):
+    def ball_speed_level(self, speed):
         self._ball_speed_level = max(1, min(10, speed))  # Clamp between 1-10
+        self._save_to_json()
+
+    def increment_ball_speed_level(self):
+        self.ball_speed_level += 1
+
+    def decrement_ball_speed_level(self):
+        self.ball_speed_level -= 1
 
     @property
     def ball_speed_pps(self):
         return self._ball_speed_level * 100
 
+    # Paddle speed
     @property
     def paddle_speed_level(self):
         return self._paddle_speed_level
@@ -66,11 +75,19 @@ class GameSettings:
     @paddle_speed_level.setter
     def paddle_speed_level(self, speed):
         self._paddle_speed_level = max(1, min(10, speed))  # Clamp between 1-10
+        self._save_to_json()
+
+    def increment_paddle_speed_level(self):
+        self.paddle_speed_level += 1
+
+    def decrement_paddle_speed_level(self):
+        self.paddle_speed_level -= 1
 
     @property
     def paddle_speed_pps(self):
         return self._paddle_speed_level * 100
 
+    # Is computer enabled
     @property
     def is_computer_enabled(self):
         return self._is_computer_enabled
