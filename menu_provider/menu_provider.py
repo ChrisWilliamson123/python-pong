@@ -1,6 +1,7 @@
-import pygame
 from dataclasses import dataclass
 from typing import Callable, List
+
+import pygame
 
 from constants import SCREEN_WIDTH
 
@@ -17,7 +18,7 @@ class MenuEntryAction():
 
 @dataclass
 class MenuEntry():
-    text: str
+    text: Callable[[], str]
     actions: List[MenuEntryAction]
 
 @dataclass
@@ -66,7 +67,7 @@ class MenuProvider(StatefulComponent):
 
         for i, entry in enumerate(self.menu_entries):
             color = self.selected_color if i == self.selection_index else self.deselected_color
-            text = self.font_entry.render(entry.text, True, color)
+            text = self.font_entry.render(entry.text(), True, color)
             if self.should_flash_selected and i == self.selection_index:
                 text.set_alpha(self.selected_text_opacity)
             text_rect = text.get_rect(center=(SCREEN_WIDTH // 2, 300 + (i * 60)))

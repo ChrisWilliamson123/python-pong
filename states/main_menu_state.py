@@ -11,9 +11,12 @@ class MainMenuState(State):
         self.text_opacity = 20
         self.opacity_direction = 1
 
-        menu_entry = MenuEntry('Press SPACE to play', [MenuEntryAction(pygame.K_SPACE, lambda: self.game_manager.change_state(StateType.GAME))])
-        menu = Menu('PONG', [menu_entry])
-        menu_provider = MenuProvider(menu, self.font_title, self.font_body, should_flash_selected=True)
+        menu_entries = [
+            MenuEntry(lambda: 'Play', [MenuEntryAction(pygame.K_RETURN, lambda: self.game_manager.change_state(StateType.GAME))]),
+            MenuEntry(lambda: 'Settings', [MenuEntryAction(pygame.K_RETURN, lambda: self.game_manager.change_state(StateType.SETTINGS))]),
+        ]
+        menu = Menu('PONG', menu_entries)
+        menu_provider = MenuProvider(menu, self.font_title, self.font_body, should_flash_selected=False)
         self.add_component(menu_provider)
 
     def render(self):

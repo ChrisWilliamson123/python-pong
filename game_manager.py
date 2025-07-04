@@ -8,6 +8,7 @@ from states.game_state import GameState
 from states.game_over_state import GameOverState
 from states.pause_state import PauseState
 from states.state_manager import StateManager
+from states.settings_state import SettingsState
 import states.state_transition_manager as state_transition_manager
 
 from game_settings import GameSettings
@@ -32,7 +33,8 @@ class GameManager:
             StateType.MENU: MainMenuState(self),
             StateType.GAME: GameState(self),
             StateType.GAME_OVER: GameOverState(self),
-            StateType.PAUSE: PauseState(self)
+            StateType.PAUSE: PauseState(self),
+            StateType.SETTINGS: SettingsState(self)
         }
 
         self.state_manager = StateManager(states, StateType.MENU, state_transition_manager.change_state)
@@ -67,6 +69,9 @@ class GameManager:
 
     def change_state(self, new_state_type):
         self.state_manager.change_state(new_state_type)
+
+    def change_to_previous_state(self):
+        self.state_manager.change_state(self.state_manager.previous_state_type)
 
     def render_previous_state(self):
         self.state_manager.previous_state.render()

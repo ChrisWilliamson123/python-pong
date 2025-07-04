@@ -5,3 +5,4 @@ class StateType(Enum):
     GAME = 'game'
     PAUSE = 'pause'
     GAME_OVER = 'game_over'
+    SETTINGS = 'settings'
