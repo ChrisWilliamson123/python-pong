@@ -3,7 +3,7 @@ import pygame
 from constants import *
 
 from states.state_type import StateType
-from states.menu_state import MenuState
+from states.main_menu_state import MainMenuState
 from states.game_state import GameState
 from states.game_over_state import GameOverState
 from states.pause_state import PauseState
@@ -29,7 +29,7 @@ class GameManager:
 
         # State initialisation
         states = {
-            StateType.MENU: MenuState(self),
+            StateType.MENU: MainMenuState(self),
             StateType.GAME: GameState(self),
             StateType.GAME_OVER: GameOverState(self),
             StateType.PAUSE: PauseState(self)
